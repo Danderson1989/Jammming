@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchBar( {handleSearch, search, handleInputChange } ) {
+export default function SearchBar( {handleSearch, search, handleInputChange } ) {
 
     return (
         <form onSubmit={handleSearch}>
@@ -16,6 +16,4 @@ function SearchBar( {handleSearch, search, handleInputChange } ) {
             <button type="submit">Search</button>
         </form>
     )
-}
-
-export default SearchBar;
+};
