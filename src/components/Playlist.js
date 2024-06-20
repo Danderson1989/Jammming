@@ -1,7 +1,7 @@
 import React from 'react';
 import Tracklist from './Tracklist';
 
-export default function Playlist( { playlistName, handlePlaylistName, addedTracks, handleRemovingTracks } ) {
+export default function Playlist( { playlistName, handlePlaylistName, addedTracks, handleRemovingTracks, handlePlaylistSubmit } ) {
 
     return (
         <div className='container'>
@@ -15,7 +15,7 @@ export default function Playlist( { playlistName, handlePlaylistName, addedTrack
             addedTracks={addedTracks}
             handleRemovingTracks={handleRemovingTracks}
             />
-            <button type='submit' id="save">Save to SPOTIFY</button>
+            <button type='submit' id="save" onClick={handlePlaylistSubmit}>Save to SPOTIFY</button>
         </div>
     )
 }

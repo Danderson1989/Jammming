@@ -3,7 +3,7 @@ import './App.css';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
-import { requestUserAuth, getAccessToken, trackSearch,  } from './accessToken'
+import { requestUserAuth, getAccessToken, trackSearch, getUserProfile, createPlaylist, addTrackUris, addTracksToPlaylist} from '../utils/Utilities'
 
 function App() {
 
@@ -38,6 +38,7 @@ useEffect(()=> {
       try {
         const token = await getAccessToken(code, clientId, clientSecret, redirectUri);
         setAccessToken(token);
+        console.log(token.access_token);
       } catch (error) {
         console.log("Error fetching access token:", error);
       }
@@ -46,7 +47,7 @@ useEffect(()=> {
 
 fetchAccessToken();
 }, [code]);
-
+//Set Search Results
 const handleSearch = e => {
     e.preventDefault();
     async function fetchSearchResults() {
@@ -54,16 +55,17 @@ const handleSearch = e => {
         setSearchResults(userSearch);
     }
     fetchSearchResults();
+    console.log(accessToken.access_token);
 };
-
+//Update Search state
 const handleInputChange = e => {
     setSearch(e.target.value)
 }
-
+//Set Playlist name state
 const handlePlaylistName = e => {
     setPlaylistName(e.target.value);
 }
-
+//Set state for added tracks to playlist
 const handleAddedTracks = (artist, album, track, id, uri) => {
     const trackToAdd = {artist: artist, album: album, track: track, id: id, uri: uri}
     setAddedTracks([
@@ -71,11 +73,21 @@ const handleAddedTracks = (artist, album, track, id, uri) => {
         trackToAdd
     ]);
 }
-
+// Set state for removed tracks for playlist
 const handleRemovingTracks = (id) => {
     setAddedTracks(addedTracks.filter(track => 
         track.id !== id
     ))
+}
+// Get user info, submit new playlist, add tracks to new playlist
+const handlePlaylistSubmit = async () => {
+  const userProfile = await getUserProfile(accessToken.access_token);
+  const userId = userProfile.id;
+  const playlist = await createPlaylist(userId, accessToken.access_token, playlistName);
+  const playlistId = playlist.id;
+  console.log(playlist);
+  const trackUris = addTrackUris(addedTracks);
+  addTracksToPlaylist(playlistId, accessToken.access_token, trackUris);
 }
 
 return (
@@ -97,6 +109,8 @@ return (
             handlePlaylistName={handlePlaylistName}
             addedTracks={addedTracks}
             handleRemovingTracks = {handleRemovingTracks}
+            handlePlaylistSubmit = {handlePlaylistSubmit}
+            accessToken = {accessToken}
         />
     </div>
     </>
