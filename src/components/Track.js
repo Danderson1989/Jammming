@@ -9,12 +9,12 @@ const uri = searchResult.uri;
 const id = searchResult.id;
 
     return (
-        <div className='container'>
-            <div className='info'>
-                <p>{track} by {artist}</p>
-                <p>{album}</p>
-            </div>
-            <p id='add' onClick={() => {handleAddedTracks(artist, album, track, uri, id)} }>+</p>
+        <div className='track-container'>
+                <div className="track-add">
+                    <p>{track} by {artist}</p>
+                    <p id ="add" onClick={() => {handleAddedTracks(artist, album, track, uri, id)} }>+</p>
+                </div>
+                <p className="artist-span">{album}</p>
         </div>
     )
 };

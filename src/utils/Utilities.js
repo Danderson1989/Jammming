@@ -134,10 +134,11 @@ export async function addTracksToPlaylist(playlistId, accessToken, trackUris) {
         position: 0
       })
     });
-
+    
     if (!response.ok) {
       throw new Error ('Network response was not ok ' + response.statusText)
     }
+    return response;
   } catch (error) {
     console.log(error)
   }

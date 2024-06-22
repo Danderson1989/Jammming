@@ -4,7 +4,7 @@ import Tracklist from './Tracklist';
 export default function Playlist( { playlistName, handlePlaylistName, addedTracks, handleRemovingTracks, handlePlaylistSubmit } ) {
 
     return (
-        <div className='container'>
+        <div className='playlist-container'>
             <h2>Playlist</h2>
             <input value={playlistName}
             type="text"
@@ -15,7 +15,7 @@ export default function Playlist( { playlistName, handlePlaylistName, addedTrack
             addedTracks={addedTracks}
             handleRemovingTracks={handleRemovingTracks}
             />
-            <button type='submit' id="save" onClick={handlePlaylistSubmit}>Save to SPOTIFY</button>
+                <button type='submit'id="save" onClick={handlePlaylistSubmit}>Save</button>
         </div>
     )
 }

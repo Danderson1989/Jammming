@@ -4,11 +4,13 @@ import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
 import { requestUserAuth, getAccessToken, trackSearch, getUserProfile, createPlaylist, addTrackUris, addTracksToPlaylist} from '../utils/Utilities'
+import { v4 as uuidv4 } from 'uuid';
+
 
 function App() {
 
 const clientId = "318706de36214725959933a3c1369354";
-const clientSecret = '0aa627dcc3c54d06ba84a289bfd6fbcb';
+const clientSecret = 'Client Secret';
 const redirectUri = 'http://localhost:3000/';
 
 const [code, setCode] = useState(null);
@@ -67,7 +69,8 @@ const handlePlaylistName = e => {
 }
 //Set state for added tracks to playlist
 const handleAddedTracks = (artist, album, track, id, uri) => {
-    const trackToAdd = {artist: artist, album: album, track: track, id: id, uri: uri}
+    const trackKey = uuidv4();
+    const trackToAdd = {artist: artist, album: album, track: track, id: trackKey, uri: uri}
     setAddedTracks([
         ...addedTracks,
         trackToAdd
@@ -79,7 +82,7 @@ const handleRemovingTracks = (id) => {
         track.id !== id
     ))
 }
-// Get user info, submit new playlist, add tracks to new playlist
+// Get user id, create playlist, add selected tracks to playlist. If successful alert user and reset search, results, and playlist
 const handlePlaylistSubmit = async () => {
   const userProfile = await getUserProfile(accessToken.access_token);
   const userId = userProfile.id;
@@ -87,33 +90,42 @@ const handlePlaylistSubmit = async () => {
   const playlistId = playlist.id;
   console.log(playlist);
   const trackUris = addTrackUris(addedTracks);
-  addTracksToPlaylist(playlistId, accessToken.access_token, trackUris);
+  const response = addTracksToPlaylist(playlistId, accessToken.access_token, trackUris);
+  if (userId && playlistId && response) {
+    alert("Playlist added, Great success!");
+    setSearch("");
+    setSearchResults({});
+    setPlaylistName("");
+    setAddedTracks([]);
+  }
 }
 
 return (
-    <>
-    <h1>Jammming</h1>
-    <SearchBar 
-        search={search}
-        handleSearch={handleSearch}
-        handleInputChange={handleInputChange}
-    />
-    <div className='resultsAndPlaylist'>
-        <SearchResults
-            searchResults={searchResults}
-            handleAddedTracks={handleAddedTracks}
-            trackSearch = {trackSearch}
-        />
-        <Playlist 
-            playlistName={playlistName}
-            handlePlaylistName={handlePlaylistName}
-            addedTracks={addedTracks}
-            handleRemovingTracks = {handleRemovingTracks}
-            handlePlaylistSubmit = {handlePlaylistSubmit}
-            accessToken = {accessToken}
-        />
+    <div>
+      <h1>Ja<em className="mmm">mmm</em>ing</h1>
+      <div className="components-box">
+          <SearchBar 
+              search={search}
+              handleSearch={handleSearch}
+              handleInputChange={handleInputChange}
+          />
+        <div className='resultsAndPlaylist'>
+            <SearchResults
+                searchResults={searchResults}
+                handleAddedTracks={handleAddedTracks}
+                trackSearch = {trackSearch}
+            />
+            <Playlist 
+                playlistName={playlistName}
+                handlePlaylistName={handlePlaylistName}
+                addedTracks={addedTracks}
+                handleRemovingTracks = {handleRemovingTracks}
+                handlePlaylistSubmit = {handlePlaylistSubmit}
+                accessToken = {accessToken}
+            />
+        </div>
+      </div>
     </div>
-    </>
 )
 
 };

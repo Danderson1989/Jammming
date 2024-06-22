@@ -6,11 +6,13 @@ export default function Tracklist ( { addedTracks, handleRemovingTracks } ) {
         <div>
             <ul>
                 {addedTracks.map(t => 
-                <div className='container' key={t.id}>
+                <div className='tracklist-container' key={t.id}>
                     <li className='info'>
-                        <p>{t.track} by {t.artist}</p>
-                        <p>{t.album}</p>
-                    <p id='minus' onClick={() => {handleRemovingTracks(t.id)} }>-</p>
+                        <div className="track-subtract">
+                            <p>{t.track} by{t.artist}</p>
+                            <p id ="subtract" onClick={() => {handleRemovingTracks(t.id)} }>-</p>
+                        </div>
+                        <p className="artist-span">{t.album}</p>
                     </li>
                 </div>
                 )}
