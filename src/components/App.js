@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
 
 const clientId = "318706de36214725959933a3c1369354";
-const clientSecret = 'Client Secret';
+const clientSecret = '0aa627dcc3c54d06ba84a289bfd6fbcb';
 const redirectUri = 'http://localhost:3000/';
 
 const [code, setCode] = useState(null);
