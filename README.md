@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+#Purpose
+
+Jammming was created to help me hone my HTML, CSS, Javascript, and React skills
+Visit https://dansjammming.netlify.app for a live view of the application
+
+#Technologies Used -
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +75,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+##VScode was the text editor of choice
+##API calls and application setup - developer.spotify.com
+
+#Features
+
+This application can query Spotify's database for tracks, create user playlists, and add tracks to a playlist
