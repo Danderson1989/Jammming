@@ -112,3 +112,6 @@ CSS file to add styling to application
 
 ### Utils.js
 Contains functions for Oauth2, accessToken, and API calls
+
+## Video Walkthrough 
+https://youtu.be/SmjeOHOw4bI
