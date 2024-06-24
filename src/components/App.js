@@ -9,8 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
-const clientId = "ClientID";
-const clientSecret = 'ClientSecret';
+const clientId = "318706de36214725959933a3c1369354";
+const clientSecret = '0aa627dcc3c54d06ba84a289bfd6fbcb';
 const redirectUri = 'https://dansjammming.netlify.app';
 
 const [code, setCode] = useState(null);
