@@ -124,6 +124,13 @@ return (
                 accessToken = {accessToken}
             />
         </div>
+        <div>
+          <p id="powered-by"><span>Powered by</span>
+            <a href="https://www.spotify.com" target="_blank" rel="noreferrer">
+              <img id="spotify-logo" src="/Spotify_Logo_RGB_Green.png" alt="spotify logo"/>
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 )

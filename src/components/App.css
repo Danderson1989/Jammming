@@ -23,6 +23,21 @@
   margin: 5px;
 }
 
+#powered-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-style: italic;
+  height: 70px;
+}
+
+#spotify-logo {
+  margin-left: 5px;
+  width: 116px;
+  height: 35px;
+}
+
 #subtract:hover {
   cursor: pointer;
   border-radius: 50%;
@@ -60,6 +75,10 @@
   flex-direction: column;
 }
 
+.mmm {
+  color: #1ed760;
+}
+
 .playlist-container {
   display: flex;
   flex-direction: column;
@@ -72,10 +91,6 @@
   color: #ffffff;
   overflow: auto;
   scrollbar-color: rgba(255, 255, 255, .5) rgba(31, 31, 31, .85);
-}
-
-.mmm {
-  color: #1ed760;
 }
  
 .resultsAndPlaylist {
