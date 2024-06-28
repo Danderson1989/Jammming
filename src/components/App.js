@@ -40,7 +40,6 @@ useEffect(()=> {
       try {
         const token = await getAccessToken(code, clientId, clientSecret, redirectUri);
         setAccessToken(token);
-        console.log(token.access_token);
       } catch (error) {
         console.log("Error fetching access token:", error);
       }
